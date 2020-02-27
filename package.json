@@ -24,14 +24,18 @@
     "@nestjs/core": "^6.0.0",
     "@nestjs/platform-express": "^6.0.0",
     "@nestjs/typeorm": "^6.3.3",
+    "auth": "^0.0.9",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
+    "controller": "^1.0.0",
+    "g": "^2.0.1",
+    "module": "^1.2.5",
     "pg": "^7.18.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
-    "typeorm": "^0.2.22",
-    "uuid": "^7.0.0"
+    "service": "^0.1.4",
+    "typeorm": "^0.2.22"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",
