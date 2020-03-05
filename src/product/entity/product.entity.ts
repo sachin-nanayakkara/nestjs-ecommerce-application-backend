@@ -1,5 +1,6 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import {Category} from '../../category/entity/category.entity';
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, OneToMany} from 'typeorm';
+import {Order} from '../../order/entity/order.entity';
+import {Rating} from '../../rating/entity/rating.entity';
 
 @Entity()
 export class Product extends BaseEntity {
@@ -7,14 +8,18 @@ export class Product extends BaseEntity {
     id: number;
 
     @Column()
+    name: string;
+
+    @Column()
     price: number;
 
     @Column()
     description: string;
 
-    @ManyToOne(type => Category, category => category.products, { eager: false })
-    category: Category;
+    @OneToMany(type => Rating, rating => rating.products, { eager: true })
+    ratings: Rating[];
 
-    @Column()
-    categoryId: number;
+    @ManyToMany(type => Order, product => product.products)
+    @JoinTable()
+    orders: Order[];
 }
