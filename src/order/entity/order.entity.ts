@@ -1,6 +1,5 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany} from 'typeorm';
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from 'typeorm';
 import {User} from '../../auth/entity/user.entity';
-import {Product} from '../../product/entity/product.entity';
 
 @Entity()
 export class Order extends BaseEntity {
@@ -8,13 +7,19 @@ export class Order extends BaseEntity {
     id: number;
 
     @Column()
-    amount: string;
+    subTotal: bigint;
 
     @Column()
-    dateCreated: string;
+    discount: bigint;
 
-    @ManyToMany(type => Product, question => question.orders)
-    products: Product[];
+    @Column()
+    delivery: bigint;
+
+    @Column()
+    dateCreated: Date;
+
+    @Column()
+    cartProduct: JSON;
 
     @ManyToOne(type => User, user => user.orders, { eager: false })
     user: User;

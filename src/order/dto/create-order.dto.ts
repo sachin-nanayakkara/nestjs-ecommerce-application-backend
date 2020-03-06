@@ -2,9 +2,18 @@ import {IsNotEmpty} from 'class-validator';
 
 export class CreateOrderDto {
     @IsNotEmpty()
-    amount: string;
+    subTotal: bigint;
 
     @IsNotEmpty()
-    dateCreated: string;
+    discount: bigint;
+
+    @IsNotEmpty()
+    delivery: bigint;
+
+    @IsNotEmpty()
+    dateCreated: Date;
+
+    @IsNotEmpty()
+    cartProduct: JSON;
 }
 

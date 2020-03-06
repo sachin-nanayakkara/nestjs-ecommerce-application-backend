@@ -5,8 +5,17 @@ export class CreateProductDto {
     name: string;
 
     @IsNotEmpty()
-    price: number;
+    price: bigint;
+
+    @IsNotEmpty()
+    discount: bigint;
 
     @IsNotEmpty()
     description: string;
+
+    @IsNotEmpty()
+    productImage: string;
+
+    @IsNotEmpty()
+    lastUpdate: Date;
 }

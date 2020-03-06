@@ -13,7 +13,7 @@ export class ProductRepository extends Repository<Product> {
         const query = this.createQueryBuilder('product');
 
         if (search) {
-            query.andWhere('(product.name LIKE :search OR product.price LIKE :search)', {search: `%${search}%`});
+            query.andWhere('(product.name LIKE :search)', {search: `%${search}%`});
         }
 
         const products = await query.getMany();
@@ -21,12 +21,8 @@ export class ProductRepository extends Repository<Product> {
     }
 
     async getTasksWithPagination(getProductsPaginationDto: GetProductsPaginationDto): Promise<PaginatedResult<Product>> {
-        const { search, page, pageSize } = getProductsPaginationDto;
+        const {search, page, pageSize} = getProductsPaginationDto;
         const query = this.createQueryBuilder('product');
-
-        if (search) {
-            query.andWhere('product.name LIKE :search OR product.price LIKE :search', { search: `%${search}%` });
-        }
 
         const count = await query.getCount();
         query.offset((page - 1) * pageSize);
@@ -44,17 +40,16 @@ export class ProductRepository extends Repository<Product> {
         };
     }
 
-    private wrapPaginatedResponse(paginationData) {
-
-    }
-
     async createProduct(createProductDto: CreateProductDto): Promise<Product> {
-        const {name, price , description} = createProductDto;
+        const {name, price, discount, description, productImage , lastUpdate} = createProductDto;
 
         const product = new Product();
         product.name = name;
         product.price = price;
+        product.discount = discount;
         product.description = description;
+        product.productImage = productImage;
+        product.lastUpdate = lastUpdate;
 
         try {
             await product.save();

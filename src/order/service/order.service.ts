@@ -1,7 +1,6 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {OrderRepository} from '../repository/order.repository';
-import {GetOrdersFilterDto} from '../dto/get-order.dto';
 import {User} from '../../auth/entity/user.entity';
 import {Order} from '../entity/order.entity';
 import {CreateOrderDto} from '../dto/create-order.dto';
@@ -12,13 +11,6 @@ export class OrdersService {
         @InjectRepository(OrderRepository)
         private orderRepository: OrderRepository,
     ) {
-    }
-
-    async getOrders(
-        filterDto: GetOrdersFilterDto,
-        user: User,
-    ): Promise<Order[]> {
-        return this.orderRepository.getOrders(filterDto, user);
     }
 
     async getOrderById(
@@ -57,11 +49,14 @@ export class OrdersService {
         createOrderDto: CreateOrderDto,
         user: User,
     ): Promise<Order> {
-        const {amount, dateCreated} = createOrderDto;
+        const {subTotal, discount, delivery, dateCreated, cartProduct} = createOrderDto;
 
         const order = await this.getOrderById(id, user);
-        order.amount = amount;
+        order.subTotal = subTotal;
+        order.discount = discount;
+        order.delivery = delivery;
         order.dateCreated = dateCreated;
+        order.cartProduct = cartProduct;
         await order.save();
         return order;
     }

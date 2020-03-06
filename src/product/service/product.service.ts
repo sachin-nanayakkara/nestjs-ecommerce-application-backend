@@ -48,12 +48,15 @@ export class ProductService {
     }
 
     async updateProducts(id: number, createProductDto: CreateProductDto): Promise<Product> {
-        const {name, price, description} = createProductDto;
+        const {name, price, discount, description, productImage , lastUpdate} = createProductDto;
 
         const product = await this.getProductById(id);
         product.name = name;
         product.price = price;
+        product.discount = discount;
         product.description = description;
+        product.productImage = productImage;
+        product.lastUpdate = lastUpdate;
         await product.save();
         return product;
     }

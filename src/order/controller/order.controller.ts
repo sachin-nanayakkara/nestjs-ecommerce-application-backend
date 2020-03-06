@@ -1,7 +1,6 @@
 import {Body, Controller, Delete, Get, Logger, Param, ParseIntPipe, Patch, Post, Query, UseGuards, UsePipes, ValidationPipe} from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import {OrdersService} from '../service/order.service';
-import {GetOrdersFilterDto} from '../dto/get-order.dto';
 import {User} from '../../auth/entity/user.entity';
 import {GetUser} from '../../auth/decorator/get-user.decorator';
 import {Order} from '../entity/order.entity';
@@ -13,15 +12,6 @@ export class OrderController {
     private logger = new Logger('TasksController');
 
     constructor(private ordersService: OrdersService) {}
-
-    @Get()
-    getOrders(
-        @Query(ValidationPipe) filterDto: GetOrdersFilterDto,
-        @GetUser() user: User,
-    ): Promise<Order[]> {
-        this.logger.verbose(`User "${user.username}" retrieving all tasks. Filters: ${JSON.stringify(filterDto)}`);
-        return this.ordersService.getOrders(filterDto, user);
-    }
 
     @Get('/:id')
     getOrderById(
