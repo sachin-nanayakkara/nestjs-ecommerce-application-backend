@@ -10,10 +10,10 @@ export class Product extends BaseEntity {
     name: string;
 
     @Column()
-    price: bigint;
+    price: number;
 
     @Column()
-    discount: bigint;
+    discount: number;
 
     @Column()
     description: string;

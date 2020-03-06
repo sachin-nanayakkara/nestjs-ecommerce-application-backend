@@ -2,13 +2,13 @@ import {IsNotEmpty} from 'class-validator';
 
 export class CreateOrderDto {
     @IsNotEmpty()
-    subTotal: bigint;
+    subTotal: number;
 
     @IsNotEmpty()
-    discount: bigint;
+    discount: number;
 
     @IsNotEmpty()
-    delivery: bigint;
+    delivery: number;
 
     @IsNotEmpty()
     dateCreated: Date;

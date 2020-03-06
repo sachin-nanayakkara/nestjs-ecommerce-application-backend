@@ -5,10 +5,10 @@ export class CreateProductDto {
     name: string;
 
     @IsNotEmpty()
-    price: bigint;
+    price: number;
 
     @IsNotEmpty()
-    discount: bigint;
+    discount: number;
 
     @IsNotEmpty()
     description: string;

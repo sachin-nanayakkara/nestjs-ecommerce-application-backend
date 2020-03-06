@@ -7,13 +7,13 @@ export class Order extends BaseEntity {
     id: number;
 
     @Column()
-    subTotal: bigint;
+    subTotal: number;
 
     @Column()
-    discount: bigint;
+    discount: number;
 
     @Column()
-    delivery: bigint;
+    delivery: number;
 
     @Column()
     dateCreated: Date;
