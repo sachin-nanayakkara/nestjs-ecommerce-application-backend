@@ -18,7 +18,7 @@ export class Order extends BaseEntity {
     @Column()
     dateCreated: Date;
 
-    @Column()
+    @Column('simple-json')
     cartProduct: JSON;
 
     @ManyToOne(type => User, user => user.orders, { eager: false })
