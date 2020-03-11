@@ -29,7 +29,7 @@ export class OrderRepository extends Repository<Order> {
             throw new InternalServerErrorException();
         }
 
-        delete order.user;
+     //   delete order.user;
         return order;
     }
 }

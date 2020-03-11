@@ -7,7 +7,7 @@ import {Rating} from '../entity/rating.entity';
 import {GetProduct} from '../../product/decorator/get-product.decorator';
 import {CreateRatingDto} from '../dto/create-rating.dto';
 
-@Controller('orders')
+@Controller('ratings')
 @UseGuards(AuthGuard())
 export class RatingController {
     private logger = new Logger('RatingsController');
