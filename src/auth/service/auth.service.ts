@@ -20,7 +20,7 @@ export class AuthService {
     return this.userRepository.signUp(authCredentialsDto);
   }
 
-  async signIn(authCredentialsDto: AuthUserLoginDto): Promise<{ token: string, user: string }> {
+  async signIn(authCredentialsDto: AuthUserLoginDto): Promise<{ token: string, user: string, id: number  }> {
     const { username } = authCredentialsDto;
     const found = await this.userRepository.findOne({ username });
     let token;
@@ -38,6 +38,8 @@ export class AuthService {
       }
 
     const user = found.username;
-    return {token, user};
+    const id  =  found.id;
+
+    return {token, user, id};
   }
 }
